@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="manifest" href="manifest.json">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <title>Rental Mobil</title>
+</head>
+<body>
+  <!--splash screen-->
+<div class="splash">
+    <h1 class="fade-in">Rental Mobil Sumedang</h1>
+</div>
+
+  <main x-data="crud()" class="container-fluid col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 pt-0 pl-0 pr-0 my-3">
+    <section>
+      <h2 class="py-4">Rental Mobil</h2>
+      <img src="./assets/images/banner.jpg" class="img-fluid" alt="Responsive image">
+      
+      <p class="text-center">Rental Mobil Sumedang merupakan layanan rental mobil dengan driver yang memiliki paket seperti City tour Sumedang maupun sekitarnya.</p>
+
+      <div class="d-flex justify-content-end">
+        <!-- Button trigger modal -->
+        <br> 
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addData">
+          Sewa Sekarang
+        </button>
+      </div>
+<br>
+      <!--card-->
+      <div class="card-group">
+        <div class="card">
+          <img class="card-img-top" img src="./assets/images/5.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Toyota New Innova Reborn</h5>
+            <p class="card-text">Tahun : 2018-2020      <br> Transmisi : A / T   <br> CC : 2400 CC  <br> Kursi : 7 <br> Warna : Sesuai stok</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" img src="./assets/images/pajero.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Mitsubishi Pajero</h5>
+            <p class="card-text">Tahun : 2018-2020      <br> Transmisi : A / T   <br> CC : 2500 CC  <br> Kursi : 6 <br> Warna : Hitam, Putih</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" img src="./assets/images/1.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Hiace Premio</h5>
+            <p class="card-text">Tahun : 2018-2020      <br> Transmisi : A / T   <br> CC : 2755 CC  <br> Kursi : 12 <br> Warna : Putih</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="card text-center">
+        <div class="card-header">
+          Rental Mobil Sumedang
+        </div>
+      <template x-if="students.length>0">    
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th>SL</th>
+            <th>Nama</th>
+            <th>Mobil</th>
+            <th>Waktu</th>
+            <th>Harga</th>
+            <th width="50px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <template x-for="(student,index) in students" :key="index">
+            <tr>
+              <td x-text="index+1"></td>
+              <td x-text="student.name"></td>
+              <td x-text="student.mobil.name"></td>
+              <td x-text="student.waktu"></td>
+              <td x-text="student.total"></td>
+              <td>
+                <button @click.prevent="detail(student,index)" class="btn p-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="currentColor" d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"/><path fill="currentColor" d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"/></svg>
+                </button>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </template>
+    </section>
+
+    <!-- Add Data -->
+    <div class="modal fade" id="addData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form @submit.prevent="saveData">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" data-count=0>
+                <div class="form-group mb-3">
+                    <label>Nama</label>
+                    <input x-model="form.name" type="text" class="form-control" placeholder="Enter Name">
+                </div>
+                <div class="form-group mb-3">
+                    <label>Mobil</label>
+                    <select x-model="form.mobil" class="form-control" @change="form.total=(convertRange(form.waktu)*(listmobil($el.value)).harga)">
+                      <option selected="">Pilih</option>
+                      <option value="0">Toyota New Innova Reborn</option>
+                      <option value="1">Mitsubishi Pajero</option>
+                      <option value="2">Hiace Premio</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label>Rentang Peminjaman</label>
+                    <input x-model="form.waktu" id="myID" @change="form.total=(convertRange($el.value)*(listmobil(form.mobil)).harga)" class="form-control" type="text" placeholder="Select Date.." readonly="readonly">
+                </div>
+                
+                <div class="form-group mb-3">
+                  <label>Harga</label>
+                  <input name="number" x-model="form.total" class="form-control">
+                  </input>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Data -->
+    <div class="modal fade" id="editData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form @submit.prevent="updateData">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+              <button @click.prevent="resetForm()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3">
+                    <label>Nama</label>
+                    <input x-model="form.name" type="text" class="form-control" placeholder="Enter Name">
+                </div>
+                <div class="form-group mb-3">
+                    <label>Mobil</label>
+                    <select x-model="form.mobil" class="form-control" @change="form.total=(convertRange(form.waktu)*(listmobil($el.value)).harga)">
+                      <option value="0">Avanza</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                  <label>Rentang Peminjaman</label>
+                  <input x-model="form.waktu" id="myID" class="form-control" type="text" placeholder="Select Date.." readonly="readonly"  @change="form.total=(convertRange($el.value)*(listmobil(form.mobil)).harga)">
+                </div>
+                <div class="form-group mb-3">
+                  <label>Harga</label>
+                  <input name="number" x-model="form.total" class="form-control">
+                  </input>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Ubah</button>
+                <button @click.prevent="deleteData(id)" class="btn btn-danger" data-bs-dismiss="modal">Hapus</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./script.js"></script>
+  <script src="./assets/js/register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>  
+  <script>
+
+  flatpickr("#myID", {
+    mode: "range",
+    minDate: "today",
+    dateFormat: "Y-m-d",
+  });
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>

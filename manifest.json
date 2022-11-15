@@ -1,0 +1,22 @@
+{
+  "name": "Rental Mobil Amelia Febiani",
+  "short_name": "Rental Mobil",
+  "description": "Aplikasi Rental Mobil Amelia Febiani",
+  "icons": [
+    {
+      "src": "assets/images/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1F3641",
+  "background_color": "#ffffff",
+  "prefer_related_applications": false
+}
